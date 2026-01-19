@@ -1,5 +1,5 @@
+# Building JS8Call-improved on MacOS
 
-------------------------------------------------------------------------------
 # MacOS Prerequisites:
 You will need Xcode commandline tools installed. Xcode can be downloaded from the Apple Store for your Mac, or you can install just the command line tools by opening Terminal and typing xcode-select --install. For this example I used Xcode 16.2 on MacOS 15 Sequoia
 
