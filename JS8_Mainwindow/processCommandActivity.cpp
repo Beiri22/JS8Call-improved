@@ -666,8 +666,27 @@ void UI_Constructor::processCommandActivity() {
             // heartbeating
             QString extra;
             auto mid = getNextMessageIdForCallsign(d.from);
+
+            // Get number of unread messages
+            int pendingCount = countUnreadForCallsign(d.from);
+            if (isGroupCall) {
+                pendingCount += countGroupUnreadForCallsign(d.to, d.from);
+            }
+
+            // We want to send the number of pending messages IN ADDITION TO
+            // the one we are about to send, so decrement the actual count
+            pendingCount--;
+
             if (mid != -1) {
-                extra = QString("MSG ID %1").arg(mid);
+                if (pendingCount > 0) {
+                    extra = QString("MSG ID %1 +%2)")
+                            .arg(mid)
+                            .arg(pendingCount);
+                }
+                else {
+                    extra = QString("MSG ID %1").arg(mid);
+                }
+
             }
 
             // group messaging - if isGroupCall, check to see if there's a
@@ -678,7 +697,14 @@ void UI_Constructor::processCommandActivity() {
             else if (isGroupCall) {
                 mid = getNextGroupMessageIdForCallsign(d.to, d.from);
                 if (mid != -1) {
-                    extra = QString("MSG ID %1").arg(mid);
+                    if (pendingCount > 0) {
+                        extra = QString("MSG ID %1 +%2)")
+                            .arg(mid)
+                            .arg(pendingCount);
+                    }
+                    else {
+                        extra = QString("MSG ID %1").arg(mid);
+                    }
                 }
             }
 
@@ -888,6 +914,18 @@ void UI_Constructor::processCommandActivity() {
                     };
                 }
 
+                // Get number of unread messages
+                int pendingCount = countUnreadForCallsign(who);
+                if (isGroupCall) {
+                    pendingCount += countGroupUnreadForCallsign(d.to, who);
+                }
+
+                // We want to send the number of pending messages IN ADDITION TO
+                // the one we are about to send, so decrement the actual count
+                // We need to decrement 2 here, because "mark as read" occurs
+                // in a callback after successful transmission
+                pendingCount-=2;
+
                 auto lookaheadMid = getLookaheadMessageIdForCallsign(who, mid);
                 if (lookaheadMid == -1 && isGroupMsg) {
                     lookaheadMid =
@@ -896,11 +934,22 @@ void UI_Constructor::processCommandActivity() {
 
                 // and reply
                 if (lookaheadMid != -1) {
-                    reply = QString("%1 MSG %2 FROM %3 NEXT MSG ID %4");
-                    reply = reply.arg(replyPath);
-                    reply = reply.arg(text);
-                    reply = reply.arg(from);
-                    reply = reply.arg(lookaheadMid);
+                    if (pendingCount > 0) {
+                        reply = QString("%1 MSG %2 FROM %3 NEXT MSG ID %4 +%5");
+                        reply = reply.arg(replyPath);
+                        reply = reply.arg(text);
+                        reply = reply.arg(from);
+                        reply = reply.arg(lookaheadMid);
+                        reply = reply.arg(pendingCount);
+                    }
+                    else {
+                        reply = QString("%1 MSG %2 FROM %3 NEXT MSG ID %4");
+                        reply = reply.arg(replyPath);
+                        reply = reply.arg(text);
+                        reply = reply.arg(from);
+                        reply = reply.arg(lookaheadMid);
+                    }
+
                 } else {
                     reply = QString("%1 MSG %2 FROM %3");
                     reply = reply.arg(replyPath);
@@ -927,8 +976,29 @@ void UI_Constructor::processCommandActivity() {
             // a stored message for user. we reply yes if the user would be able
             // to retreive a stored message
             auto mid = getNextMessageIdForCallsign(who);
+
+            // Get number of unread messages
+            int pendingCount = countUnreadForCallsign(who);
+            if (isGroupCall) {
+                pendingCount += countGroupUnreadForCallsign(d.to, d.from);
+            }
+
+            // We want to send the number of pending messages IN ADDITION TO
+            // the one we are about to send, so decrement the actual count
+            pendingCount--;
+
             if (mid != -1) {
-                reply = QString("%1 YES MSG ID %2").arg(replyPath).arg(mid);
+                if (pendingCount > 0) {
+                    reply = QString("%1 YES MSG ID %2 +%3")
+                                .arg(replyPath)
+                                .arg(mid)
+                                .arg(pendingCount);
+                }
+                else {
+                    reply = QString("%1 YES MSG ID %2")
+                                .arg(replyPath)
+                                .arg(mid);
+                }
             }
 
             // Group messaging - if isGroupCall, check to see if there's a
@@ -939,7 +1009,17 @@ void UI_Constructor::processCommandActivity() {
             else if (isGroupCall) {
                 mid = getNextGroupMessageIdForCallsign(d.to, d.from);
                 if (mid != -1) {
-                    reply = QString("%1 YES MSG ID %2").arg(replyPath).arg(mid);
+                    if (pendingCount > 0) {
+                        reply = QString("%1 YES MSG ID %2 +%3")
+                                    .arg(replyPath)
+                                    .arg(mid)
+                                    .arg(pendingCount);
+                    }
+                    else {
+                        reply = QString("%1 YES MSG ID %2")
+                                    .arg(replyPath)
+                                    .arg(mid);
+                    }
                 }
             }
 

@@ -34,6 +34,10 @@ class Inbox {
     // High-Level Interface
     QList<QPair<int, Message>> fetchForCall(const QString& callPattern);
     int countUnreadFrom(QString from);
+    int countUnreadForCallsign(const QString &callsign);
+    int countGroupUnreadForCallsign(const QString &group_name,
+                                    const QString &callsign);
+
     QPair<int, Message> firstUnreadFrom(QString from);
     int getLookaheadMessageIdForCallsign(const QString &callsign,
                                          int afterMsgId);

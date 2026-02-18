@@ -6355,6 +6355,27 @@ int UI_Constructor::getLookaheadGroupMessageIdForCallsign(QString group_name,
     return -1;
 }
 
+// Facade for Inbox::countUnreadForCallsign
+int UI_Constructor::countUnreadForCallsign(const QString &callsign) {
+    Inbox inbox(inboxPath());
+    if (!inbox.open()) {
+        return 0;
+    }
+
+    return inbox.countUnreadForCallsign(callsign);
+}
+
+// Facade for Inbox::countGroupUnreadForCallsign
+int UI_Constructor::countGroupUnreadForCallsign(const QString &group_name,
+                                            const QString &callsign) {
+    Inbox inbox(inboxPath());
+    if (!inbox.open()) {
+        return 0;
+    }
+
+    return inbox.countGroupUnreadForCallsign(group_name, callsign);
+}
+
 // Facade for Inbox::markGroupMsgDeliveredForCallsign
 bool UI_Constructor::markGroupMsgDeliveredForCallsign(int msgId,
                                                       QString callsign) {
