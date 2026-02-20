@@ -1014,6 +1014,9 @@ class UI_Constructor : public QMainWindow {
     int getNextGroupMessageIdForCallsign(QString group_name, QString callsign);
     int getLookaheadGroupMessageIdForCallsign(QString group_name,
                                               QString callsign, int afterMsgId);
+    int countUnreadForCallsign(const QString &callsign);
+    int countGroupUnreadForCallsign(const QString &group_name,
+                                    const QString &callsign);
     bool markGroupMsgDeliveredForCallsign(int msgId, QString callsign);
     bool markMsgDelivered(int mid, Message msg);
     QStringList parseRelayPathCallsigns(QString from, QString text);

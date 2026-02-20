@@ -138,5 +138,15 @@ void UI_Constructor::initializeGroupMessage() {
 
     processCommandActivity();
 
+    CommandDetail cmd8 = {};
+    cmd8.cmd = " HB";
+    cmd8.from = "W1AW";
+    cmd8.utcTimestamp = DriftingDateTime::currentDateTimeUtc();
+    cmd8.submode = Varicode::JS8CallNormal;
+
+    m_rxCommandQueue.append(cmd8);
+
+    processCommandActivity();
+
     displayActivity(true);
 }
