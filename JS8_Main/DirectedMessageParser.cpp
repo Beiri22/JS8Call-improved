@@ -62,16 +62,16 @@ static const PillCommandDef s_commandDefs[] = {
     {"FB", "Fine business - excellent", false, false},
 
     // Bare-capable CQ/HB variants.
-    {"CQ CQ CQ", "Calling all stations", false, true},
-    {"CQ CONTEST", "Calling all stations (contest)", false, true},
-    {"CQ FIELD", "Calling all stations (field day)", false, true},
-    {"CQ DX", "Calling all stations (DX)", false, true},
-    {"CQ QRP", "Calling all stations (low power)", false, true},
-    {"CQ FD", "Calling all stations (field day)", false, true},
-    {"CQ CQ", "Calling all stations", false, true},
-    {"CQ", "Calling all stations", false, true},
-    {"HB", "Heartbeat - automatic presence beacon", true, true},
-    {"HEARTBEAT", "Heartbeat - automatic presence beacon", true, true},
+    {"CQ CQ CQ", "Calling all stations. Your location is %1.", true, true, "not specified"},
+    {"CQ CONTEST", "Calling all stations (contest). Your location is %1.", true, true, "not specified"},
+    {"CQ FIELD", "Calling all stations (field day). Your location is %1.", true, true, "not specified"},
+    {"CQ DX", "Calling all stations (DX). Your location is %1.", true, true, "not specified"},
+    {"CQ QRP", "Calling all stations (low power). Your location is %1.", true, true, "not specified"},
+    {"CQ FD", "Calling all stations (field day). Your location is %1.", true, true, "not specified"},
+    {"CQ CQ", "Calling all stations. Your location is %1.", true, true, "not specified"},
+    {"CQ", "Calling all stations. Your location is %1.", true, true, "not specified"},
+    {"HB", "Heartbeat - automatic presence beacon. Your location is %1.", true, true, "not specified"},
+    {"HEARTBEAT", "Heartbeat - automatic presence beacon. Your location is %1.", true, true, "not specified"},
 };
 
 struct CommandMatch {
