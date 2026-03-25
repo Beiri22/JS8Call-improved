@@ -18,6 +18,7 @@ struct PillCommandDef {
     const char *tooltip;
     bool includesArg;
     bool allowsBare;
+    const char *missingArgText = nullptr;
 };
 
 static const PillCommandDef s_commandDefs[] = {
@@ -32,12 +33,15 @@ static const PillCommandDef s_commandDefs[] = {
     {"QUERY MSGS?", "Query: Do you have stored messages for me?", false,
      false},
     {"HEARING?", "Query: What stations do you hear?", false, false},
-    {"MSG TO:", "Store message at relay for %1", true, false},
+    {"MSG TO:", "Store message at relay for %1", true, false,
+     "[target callsign is missing]"},
     {"HEARTBEAT SNR", "Heartbeat signal report", false, false},
     {"QUERY MSGS", "Query: Do you have stored messages for me?", false,
      false},
-    {"QUERY CALL", "Query: Can you reach %1?", true, false},
-    {"QUERY MSG", "Query: Deliver stored message %1", true, false},
+    {"QUERY CALL", "Query: Can you reach %1?", true, false,
+     "[target callsign is missing]"},
+    {"QUERY MSG", "Query: Deliver stored message %1", true, false,
+     "[message id is missing]"},
     {"QUERY", "Generic query", false, false},
     {"DIT DIT", "Two dits - casual sign-off", false, false},
     {"STATUS", "Station status message", false, false},
@@ -49,7 +53,7 @@ static const PillCommandDef s_commandDefs[] = {
     {"SNR", "Signal report value", false, false},
     {"QSL", "Confirm: I received your message", false, false},
     {"INFO", "Station information", false, false},
-    {"GRID", "My grid locator is %1", true, false},
+    {"GRID", "My grid locator is %1", true, false, "[grid locator is missing]"},
     {"73", "Best regards - end of contact", false, false},
     {"YES", "Affirmative", false, false},
     {"NO", "Negative", false, false},
@@ -217,8 +221,6 @@ CommandMatch matchCommandAt(const QString &text, int start, bool bareOnly) {
 QString commandTooltip(const QString &cmd) {
     if (const auto *def = findCommandDef(cmd))
         return QString::fromUtf8(def->tooltip);
-    if (cmd.startsWith(QLatin1String("CQ")))
-        return QStringLiteral("Calling all stations");
     return QString("Command: %1").arg(cmd);
 }
 
@@ -227,8 +229,13 @@ QString formatCommandTooltip(const CommandMatch &match,
                              bool usedImplicitTarget) {
     QString tip = commandTooltip(match.commandText);
     if (tip.contains(QLatin1String("%1"))) {
-        tip = tip.arg(match.argText.isEmpty() ? QStringLiteral("\xe2\x80\xa6")
-                                              : match.argText);
+        QString replacement = match.argText;
+        if (replacement.isEmpty()) {
+            replacement = (match.def && match.def->missingArgText)
+                              ? QString::fromUtf8(match.def->missingArgText)
+                              : QStringLiteral("[...]");
+        }
+        tip = tip.arg(replacement);
     }
 
     if (usedImplicitTarget && !implicitTarget.isEmpty()) {
