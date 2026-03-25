@@ -172,7 +172,7 @@ qt_add_executable(${TARGET} MACOSX_BUNDLE WIN32 ${ICON_FILE})
 
 set_target_properties(
   ${TARGET} PROPERTIES
-  MACOSX_BUNDLE_INFO_PLIST             "${CMAKE_CURRENT_SOURCE_DIR}/Darwin/Info.plist.in"
+  MACOSX_BUNDLE_INFO_PLIST             "${CMAKE_CURRENT_SOURCE_DIR}/resources/MacOS/Info.plist.in"
   MACOSX_BUNDLE_INFO_STRING            "JS8Call facilitates amateur radio communication using very weak signals.."
   MACOSX_BUNDLE_ICON_FILE              "${ICON_FILE}"
   MACOSX_BUNDLE_BUNDLE_VERSION         "${wsjtx_VERSION}"
@@ -228,6 +228,8 @@ target_sources(
   JS8_Main/CallsignValidator.cpp
   JS8_Main/CandidateKeyFilter.cpp
   JS8_Main/CPlotter.cpp
+  JS8_Main/DirectedMessageHighlighter.cpp
+  JS8_Main/DirectedMessageParser.cpp
   JS8_Main/DriftingDateTime.cpp
   JS8_Main/Flatten.cpp
   JS8_Main/ForeignKeyDelegate.cpp
@@ -251,6 +253,7 @@ target_sources(
   JS8_Main/fileutils.cpp
   JS8_Main/main.cpp
   JS8_Main/Modes.cpp
+  JS8_Main/PillRenderer.cpp
   JS8_Main/ProcessThread.cpp
   JS8_Main/qt_helpers.cpp
   JS8_Main/Radio.cpp
@@ -259,6 +262,7 @@ target_sources(
   JS8_Main/SelfDestructMessageBox.cpp
   JS8_Main/SignalMeter.cpp
   JS8_Main/TraceFile.cpp
+  JS8_Main/TransmitTextSourceMirror.cpp
   JS8_Main/TransmitTextEdit.cpp
   JS8_Main/TwoPhaseSignal.cpp
   JS8_Main/Varicode.cpp
