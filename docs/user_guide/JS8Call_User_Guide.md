@@ -243,6 +243,8 @@ Normal FT8 character restrictions **do not** apply! The extended character set i
 
 As you type your message you'll see the send button display the transmission time it'll take to send your complete message. All you have to do is click send (or hit enter) to start transmitting on the next interval. As each frame is transmitted one after the other, the button will update with the amount of time left to transmit the message. JS8Call 2.0 supports typeahead, so you can start transmitting and continue typing your message as each frame is transmitted. Checksummed messages like MSG or Relays cannot use typeahead.
 
+Starting with JS8Call 2.6, the transmit message box can highlight structured parts of a message as colored pills while you type. This includes recipient callsigns, relay paths, group callsigns, and common commands such as directed-message commands. Hovering over a pill shows a short tooltip explaining that part of the message. This feature is enabled by default and requires no setup. If you prefer plain text, open `Settings -> UI -> Composition` and clear **Display callsigns and commands as pills**.
+
 Because of this special variable encoding, messages in JS8Call cannot be decoded by WSJT-X. The same is also true, WSJT-X messages will not be shown in JS8Call.
 
 ### Message Types
