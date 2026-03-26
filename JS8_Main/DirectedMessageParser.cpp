@@ -33,7 +33,7 @@ static const PillCommandDef s_commandDefs[] = {
     {"QUERY MSGS?", "Query: Do you have stored messages for me?", false,
      false},
     {"HEARING?", "Query: What stations do you hear?", false, false},
-    {"MSG TO:", "Store message at relay for %1", true, false,
+    {"MSG TO:", "Store message for later retrieval by %1", true, false,
      "[target callsign is missing]"},
     {"HEARTBEAT SNR", "Heartbeat signal report", false, false},
     {"QUERY MSGS", "Query: Do you have stored messages for me?", false,
