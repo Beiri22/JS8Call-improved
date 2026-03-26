@@ -245,6 +245,8 @@ As you type your message you'll see the send button display the transmission tim
 
 Starting with JS8Call 2.6, the transmit message box can highlight structured parts of a message as colored pills while you type. This includes recipient callsigns, relay paths, group callsigns, and common commands such as directed-message commands. Hovering over a pill shows a short tooltip explaining that part of the message. This feature is enabled by default and requires no setup. If you prefer plain text, open `Settings -> UI -> Composition` and clear **Display callsigns and commands as pills**.
 
+<img src="pill.png">
+
 Because of this special variable encoding, messages in JS8Call cannot be decoded by WSJT-X. The same is also true, WSJT-X messages will not be shown in JS8Call.
 
 ### Message Types
