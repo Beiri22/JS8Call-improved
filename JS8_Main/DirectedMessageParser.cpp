@@ -327,15 +327,17 @@ QList<DirectedMessageParser::Token> parseTokensUpper(
 
         if (!addressPart.isEmpty()) {
             if (addressPart.startsWith('@')) {
-                DirectedMessageParser::Token t;
-                t.start = 0;
-                t.length = addressPart.length();
-                t.type = DirectedMessageParser::Token::Group;
-                t.tooltip = QString("Group call to %1").arg(addressPart);
-                tokens.append(t);
-                foundAddress = true;
-                explicitTargetPresent = true;
-                addressEndPos = addressPart.length();
+                if (Varicode::isCompoundCallsign(addressPart)) {
+                    DirectedMessageParser::Token t;
+                    t.start = 0;
+                    t.length = addressPart.length();
+                    t.type = DirectedMessageParser::Token::Group;
+                    t.tooltip = QString("Group call to %1").arg(addressPart);
+                    tokens.append(t);
+                    foundAddress = true;
+                    explicitTargetPresent = true;
+                    addressEndPos = addressPart.length();
+                }
             } else {
                 auto match = callsignRe().match(addressPart);
                 if (match.hasMatch() && match.capturedStart() == 0 &&
