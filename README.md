@@ -1,6 +1,8 @@
 # JS8Call-improved
 JS8Call-improved is continued development of the original JS8Call project. Most of the same developers have worked on both projects.
 
+Full information on JS8Call, including the User Guide and code documentation is available on our [website](https://js8call-improved.github.io)
+
 Like JS8Call, JS8Call-improved is licensed under the GPLv3, the Qt libraries used by JS8Call-improved are licensed under the LGPL. See [LICENSE](LICENSE) for the details. All copyrights remain with the original holders. Source code for JS8Call-improved is [here](https://github.com/JS8Call-improved/JS8Call-improved)
 
 You can view or save an offline copy of the JS8Call User Guide [here](https://js8call-improved.github.io/JS8Call-improved/d6/d14/md_docs_2user__guide_2JS8Call__User__Guide.html)
@@ -60,10 +62,10 @@ JS8Call is a derivative of the WSJT-X application, restructured and redesigned f
 
 # JS8Call Updates to v2.3.x
 This is, in the flavor of `WSJTX-improved`, an 'improved' version of the original JS8Call, the source
-code for which can be found at: https://bitbucket.org/widefido/js8call/src/js8call/
+code for which is now hosted on this repository.
 
 I am not the original author, and have no desire to create a fork, add new features, etc. My motivation
-was to have a native version of JS8Call that would run on my Apple Silicon Mac, using a current version
+was to have a native version of JS8Call that would run on my Apple silicon Mac, using a current version
 of the Qt and Hamlib libraries. Along the way, I discovered and corrected a few bugs, and made some minor
 visual improvements to the UI.
 
@@ -150,3 +152,8 @@ Testing on Linux and Windows has been ably provided by Joe Counsil, K0OG, who do
 grunt work while I largely just type things and drink coffee.
 
 Allan Bazinet, W6BAZ
+
+# JS8Call v2.4.x and later
+All versions of JS8Call up to version 2.3.1 were named "jscall" (lower case). JS8Call-improved was founded by Chris AC9KH to move development forward from v2.3.1. Version 2.4.0 was released as JS8Call-improved on Nov 3, 2025 when development moved to the new team environment. Jordan archived the original [js8call repository](https://github.com/js8call/js8call), joined the JS8Call-improved team and the software was named JS8Call (both upper and lower case) for versions 2.5.0 and later. JS8Call-improved is now the official source of the software. Builds for Mac, Windows and Linux are provided in our [releases](https://github.com/JS8Call-improved/JS8Call-improved/releases) from version 2.4.0 and later. Included in the releases are build assets that you can use to build JS8Call from source code, such as pre-built libraries for MacOS and automated scripts for Linux-based systems.
+
+Chris Olson, AC9KH
