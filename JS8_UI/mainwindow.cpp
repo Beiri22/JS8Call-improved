@@ -1395,6 +1395,7 @@ void UI_Constructor::createStatusBar() // createStatusBar
 
     last_tx_label.setAlignment(Qt::AlignCenter);
     last_tx_label.setMinimumSize(QSize{150, 18});
+    last_tx_label.setStyleSheet("QLabel{background-color: #6699ff}");
     last_tx_label.setFrameStyle(QFrame::Panel | QFrame::Sunken);
     statusBar()->addWidget(&last_tx_label);
 
@@ -1460,6 +1461,7 @@ void UI_Constructor::createStatusBar() // createStatusBar
 
     statusBar()->addPermanentWidget(&wpm_label);
     wpm_label.setMinimumSize(QSize{120, 18});
+    wpm_label.setStyleSheet("QLabel{background-color: #6699ff}");
     wpm_label.setFrameStyle(QFrame::Panel | QFrame::Sunken);
     wpm_label.setAlignment(Qt::AlignCenter);
 }
